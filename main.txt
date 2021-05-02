@@ -19,6 +19,7 @@ https://raw.githubusercontent.com/Kees1958/W3C_annual_most_used_survey_blocklist
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/AdAway-hosts.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/Ad_filter_list_by_Disconnect.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/AdguardDNS-hosts.txt
+https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/KADhosts.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/NoTrack_Tracker_Blocklist.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/Peter_Lowe_ADS.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/Prigent-Ads-hosts.txt
@@ -27,6 +28,7 @@ https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/adguard_host.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/adguard_host_privacy.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/adguard_mobile_host.txt
+https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/ads-and-tracking-extended.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/ads-and-tracking.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/adservers.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/android-tracking-pihole.txt
@@ -38,6 +40,7 @@ https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/kad_host.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/ublock_hosts.txt
 https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/urlhaus_filter_hosts.txt
+https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/youtubehosts.txt
 https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/AmazonFireTV.txt
 https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt
 https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt
