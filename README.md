@@ -1,4 +1,4 @@
-# pihole-all-in-1
+# pihole-adlists-set
 
  ```bash
  pihole restartdns 
