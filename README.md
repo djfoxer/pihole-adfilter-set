@@ -4,6 +4,8 @@ This small project brings fast and simple way to add in "one command" the whole 
 
 Main file: [adfilterset.txt](https://raw.githubusercontent.com/djfoxer/pihole-adfilter-set/main/adfilterset.txt) contains 76 url sources that block 1 454 942 domains.
 
+**Each of url in this file is not supported and owned by this project.**
+
 ![PiHole blocked domains](https://github.com/djfoxer/pihole-adfilter-set/raw/main/doc/block1.PNG)
 
 ## Installation
