@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace djfoxer.PiHole.AdFilterSet.Exceptions
 {
+    [Serializable]
     public class FileReadException : Exception
     {
         public FileReadException()

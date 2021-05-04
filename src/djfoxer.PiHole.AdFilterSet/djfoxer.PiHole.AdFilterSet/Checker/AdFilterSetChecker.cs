@@ -1,4 +1,5 @@
-﻿using djfoxer.PiHole.AdFilterSet.Exceptions;
+﻿using djfoxer.PiHole.AdFilterSet.Checker.Checks;
+using djfoxer.PiHole.AdFilterSet.Exceptions;
 using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
@@ -11,62 +12,54 @@ namespace djfoxer.PiHole.AdFilterSet.Checker
 {
     public class AdFilterSetChecker : IAdFilterSetChecker
     {
-        private readonly HttpClient _hc;
+        private readonly HttpClient _httpClient;
         private readonly ILogger<AdFilterSetChecker> _logger;
 
-        public AdFilterSetChecker(ILogger<AdFilterSetChecker> logger)
+        public AdFilterSetChecker(ILogger<AdFilterSetChecker> logger, IHttpClientFactory httpClientFactory)
         {
-            _hc = new HttpClient();
+            _httpClient = httpClientFactory.CreateClient();
             _logger = logger;
         }
 
-        public async Task ValidAndUpdate(string pathToAdFilterSet)
+        public async Task<bool> CheckAdFilterSet(string pathToAdFilterSet, bool cleanFile)
         {
             var items = await Check(pathToAdFilterSet);
             if (items.FileReadException != null)
             {
                 _logger.LogInformation(items.FileReadException, "CheckError");
-                return;
+                return false;
             }
 
             var correctItems = items.ValidationInfoItems.Where(x => x.Exception == null).Select(x => x.Url).OrderBy(x => x);
-            if (correctItems.Any())
+            if (cleanFile && correctItems.Any())
             {
                 await File.WriteAllLinesAsync(pathToAdFilterSet, correctItems, Encoding.UTF8);
                 _logger.LogInformation("File updated");
             }
-            else
-            {
-                _logger.LogInformation("All data is incorrect");
-            }
+
+            return !items.ValidationInfoItems.Any(x => x.Exception != null);
         }
 
-        protected async Task<ValidationInfo> Check(string pathToAdFilterSet)
+        public async Task<ValidationInfo> Check(string pathToAdFilterSet)
         {
             var validation = new ValidationInfo();
             try
             {
+                var allChecks = CheckerFactory.GetAllChecks(_logger, _httpClient);
                 foreach (var url in await File.ReadAllLinesAsync(pathToAdFilterSet))
                 {
-                    if (string.IsNullOrWhiteSpace(url))
-                    {
-                        _logger.LogInformation("Ignore empty line");
-                        continue;
-                    }
-
                     var validationItem = new ValidationInfoItem(url);
+                    validation.ValidationInfoItems.Add(validationItem);
                     try
                     {
-                        IsUrlValid(url);
-                        await CheckFile(url);
+                        foreach (var check in allChecks)
+                        {
+                            await check.CheckFile(validation);
+                        }
                     }
                     catch (Exception e)
                     {
                         validationItem.Exception = e;
-                    }
-                    finally
-                    {
-                        validation.ValidationInfoItems.Add(validationItem);
                     }
                 }
             }
@@ -76,30 +69,6 @@ namespace djfoxer.PiHole.AdFilterSet.Checker
                 validation.FileReadException = new FileReadException($"Exception for path: {pathToAdFilterSet}", e);
             }
             return validation;
-        }
-
-        protected bool IsUrlValid(string url)
-        {
-            if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
-            {
-                _logger.LogError($"Url bad format:{url}");
-                throw new WrongUrlException(url);
-            }
-            return true;
-        }
-
-        protected async Task CheckFile(string url)
-        {
-            var response = await _hc.GetAsync(url);
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-            {
-                _logger.LogError($"Missing data in:{url}");
-                throw new MissingDataException(url);
-            }
-            else
-            {
-                _logger.LogInformation($"Valid url:{url}");
-            }
         }
     }
 }

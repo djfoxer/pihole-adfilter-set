@@ -4,6 +4,6 @@ namespace djfoxer.PiHole.AdFilterSet.Checker
 {
     public interface IAdFilterSetChecker
     {
-        Task ValidAndUpdate(string pathToAdFilterSet);
+        Task<bool> CheckAdFilterSet(string pathToAdFilterSet, bool cleanFile);
     }
 }

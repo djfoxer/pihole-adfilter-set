@@ -1,0 +1,6 @@
+https://www.djfoxer.pl/aaa.txt
+aaaaaaaaaaaaa
+
+https://raw.githubusercontent.com/djfoxer/pihole-adfilter-set/main/adfilterset.txt
+https://raw.githubusercontent.com/djfoxer/pihole-adfilter-set/main/adfilterset.txt
+https://wwwwwwww.djfoxer.pl/

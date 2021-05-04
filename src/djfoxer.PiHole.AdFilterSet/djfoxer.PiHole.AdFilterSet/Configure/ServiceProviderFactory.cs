@@ -9,9 +9,10 @@ namespace djfoxer.PiHole.AdFilterSet.Configure
     {
         private ServiceProviderFactory() =>
             ServiceProvider = new ServiceCollection()
-             .AddLogging(builder => builder.AddConsole())
-             .AddSingleton<IAdFilterSetChecker, AdFilterSetChecker>()
-             .BuildServiceProvider();
+            .AddLogging(builder => builder.AddConsole())
+            .AddSingleton<IAdFilterSetChecker, AdFilterSetChecker>()
+            .AddHttpClient()
+            .BuildServiceProvider();
 
         private static ServiceProviderFactory _serviceProviderFactory;
 
